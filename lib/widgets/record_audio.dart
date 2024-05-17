@@ -141,7 +141,7 @@ class _RecordAudioState extends State<RecordAudio> {
                   case RecordingState.recording:
                     return AudioWaveforms(
                       enableGesture: true,
-                      size: Size(MediaQuery.of(context).size.width, 200),
+                      size: Size(MediaQuery.of(context).size.width, 300),
                       recorderController: recorderController,
                       waveStyle: const WaveStyle(
                           waveColor: Color.fromARGB(255, 0, 0, 0),
@@ -152,35 +152,37 @@ class _RecordAudioState extends State<RecordAudio> {
                     );
 
                   default:
-                    if (isEnhanced) {
-                      return AudioFileWaveforms(
-                        size: Size(MediaQuery.of(context).size.width, 200),
-                        waveformType: WaveformType.fitWidth,
-                        playerController: enhancedController,
-                        playerWaveStyle: const PlayerWaveStyle(
-                            fixedWaveColor: Colors.grey,
-                            liveWaveColor: Colors.teal,
-                            spacing: 4,
-                            showSeekLine: true,
-                            scaleFactor: 200,
-                            seekLineColor: Colors.red),
-                        margin: const EdgeInsets.symmetric(horizontal: 15),
-                      );
-                    } else {
-                      return AudioFileWaveforms(
-                        size: Size(MediaQuery.of(context).size.width, 200),
-                        waveformType: WaveformType.fitWidth,
-                        playerController: playerController,
-                        playerWaveStyle: const PlayerWaveStyle(
-                            fixedWaveColor: Colors.grey,
-                            liveWaveColor: Colors.teal,
-                            spacing: 4,
-                            showSeekLine: true,
-                            scaleFactor: 200,
-                            seekLineColor: Colors.red),
-                        margin: const EdgeInsets.symmetric(horizontal: 15),
-                      );
-                    }
+                    return Builder(builder: (context) {
+                      if (isEnhanced) {
+                        return AudioFileWaveforms(
+                          size: Size(MediaQuery.of(context).size.width, 300),
+                          waveformType: WaveformType.fitWidth,
+                          playerController: enhancedController,
+                          playerWaveStyle: const PlayerWaveStyle(
+                              fixedWaveColor: Colors.grey,
+                              liveWaveColor: Color.fromARGB(255, 0, 116, 104),
+                              spacing: 4,
+                              showSeekLine: true,
+                              scaleFactor: 200,
+                              seekLineColor: Colors.red),
+                          margin: const EdgeInsets.symmetric(horizontal: 15),
+                        );
+                      } else {
+                        return AudioFileWaveforms(
+                          size: Size(MediaQuery.of(context).size.width, 300),
+                          waveformType: WaveformType.fitWidth,
+                          playerController: playerController,
+                          playerWaveStyle: const PlayerWaveStyle(
+                              fixedWaveColor: Colors.grey,
+                              liveWaveColor: Color.fromARGB(255, 28, 80, 175),
+                              spacing: 4,
+                              showSeekLine: true,
+                              scaleFactor: 200,
+                              seekLineColor: Colors.red),
+                          margin: const EdgeInsets.symmetric(horizontal: 15),
+                        );
+                      }
+                    });
                 }
               }),
             ),
